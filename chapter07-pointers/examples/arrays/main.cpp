@@ -12,6 +12,11 @@ void array_function()
     delete [] ar;
 }
 
+int * array_factory(int size)
+{
+   return new int[size];
+}
+
 const int SIZE = 5;
 int main()
 {
