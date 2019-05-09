@@ -32,18 +32,37 @@ int bsearch(const std::vector<std::string> &v,const std::string &key,int low,int
 {
    // find the midpoint
    int mid = low + (high - low) / 2;
-
    if(mid < 0 || mid > high)
       return -1;
-
    if(v[mid] == key)
       return mid;
    else if(key < v[mid])
       return bsearch(v,key,low,mid-1);
    else if(key > v[mid])
       return bsearch(v,key,mid+1,high);
+}
 
+int bsearch_iter(const std::vector<std::string> &v,const std::string &key,int low,int high)
+{
+   int index = -1;
+   for(;;)
+   {
+      int mid = low + (high - low) / 2;
 
+      if(mid < 0 || mid > high)
+         break;
+
+      if(v[mid] == key)
+      {
+         index = mid;
+         break;
+      }
+      else if(key < v[mid])
+         high = mid - 1;
+      else if(key > v[mid])
+         low = mid + 1;
+   }
+   return index;
 }
 
 int search(const std::vector<std::string> &v,const std::string &key)
@@ -51,7 +70,8 @@ int search(const std::vector<std::string> &v,const std::string &key)
    int count=0;
    int index=-1;
 
-   return bsearch(v,key,0,v.size()-1);
+   //return bsearch(v,key,0,v.size()-1);
+   return bsearch_iter(v,key,0,v.size()-1);
 /*
    for(int i=0;i < v.size();i++)
    {
@@ -76,8 +96,7 @@ int main()
 {
    std::vector<std::string> names = readfile("names.txt");
    std::sort(names.begin(),names.end(),compare);
-   print(std::cout,names);
-   std::cout << search(names,"Tonning");
+   std::cout << search(names,"Ratchford") << std::endl;
 
    return 0;
 }
