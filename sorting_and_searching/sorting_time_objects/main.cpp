@@ -24,10 +24,10 @@ std::ostream& operator<<(std::ostream& o,Time t)
 template<class T> 
 void print(T v)
 {
-//   for(T::iterator i=v.begin();i != v.end();i++)
-//      std::cout << *i << " ";
-   for(int i=0;i<v.size();i++)
-      std::cout << v[i] << " ";
+   for(typename T::iterator i=v.begin();i != v.end();i++)
+      std::cout << *i << " ";
+//   for(int i=0;i<v.size();i++)
+//      std::cout << v[i] << " ";
    std::cout << std::endl;
 }
 
