@@ -28,6 +28,9 @@ void print(std::ostream &o,std::vector<std::string> v)
       o << *p << std::endl;
 }
 
+/*
+ * binary search, this is the recursive version
+ */
 int bsearch(const std::vector<std::string> &v,const std::string &key,int low,int high)
 {
    // find the midpoint
@@ -42,6 +45,9 @@ int bsearch(const std::vector<std::string> &v,const std::string &key,int low,int
       return bsearch(v,key,mid+1,high);
 }
 
+/*
+ * binary search, this is the non recursive (iterative)  version
+ */
 int bsearch_iter(const std::vector<std::string> &v,const std::string &key,int low,int high)
 {
    int index = -1;
